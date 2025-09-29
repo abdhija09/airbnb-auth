@@ -1,0 +1,50 @@
+<%- include('../partials/fav.ejs') %>
+<%- include("../partials/nav.ejs") %>
+
+</head>
+
+<body>
+   <main class="container mx-auto px-6" style="margin-top: 90px;">
+     <div class="main-content text-center my-6">
+    <h1 class="text-3xl font-bold top-2.5">Here are your Favorites:</h1>
+  </div>
+    
+    <ul class="homes-list grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <% favoriteHomes.forEach(home => { %>
+        <li class="home-card border rounded-2xl shadow-lg p-4 bg-white">
+          
+          <!-- Home Image -->
+          <img 
+            src="<%= home.photourl %>" 
+            alt="Home Image"
+            class="home-img w-full h-60 object-cover rounded-xl mb-4">
+
+          <!-- Home Details -->
+          <p class="home-name text-lg font-semibold">
+            <%= home.name %> 
+            <b><%= home.rating %>⭐</b>
+          </p>
+          <p><strong>Address:</strong> <%= home.address %></p>
+          <p class="font-bold text-red-600"><%= home.price %>/night</p>
+          
+          <!-- Buttons -->
+          <div class="mt-4 flex gap-4">
+            <a href="/homes/<%= home._id %>?favorite=true" 
+               class="home-link bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-xl shadow">
+               View Details
+            </a>
+            
+            <button class="bg-green-600 hover:bg-green-700 text-white py-2 px-4 rounded-xl shadow">
+              Book
+            </button>
+            
+          <form action="/favorite/delete-home/<%= home._id %>" method="post">
+          <button type="submit" class="removefav" >Remove from Favorites
+          </button></form>
+          </div>
+        </li>
+      <% }) %>
+    </ul>
+  </main>
+</body>
+</html>

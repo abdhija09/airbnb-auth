@@ -1,0 +1,47 @@
+<%- include('../partials/fav.ejs')%>
+<%- include("../partials/nav.ejs")%>
+<%- include('../partials/404.ejs')%>
+
+</head>
+<body>
+  <div class="main-content">
+    <!-- <h1>Welcome to Airbnb</h1> -->
+  </div>
+
+  <main class="container" style="margin-top: 90px;">
+  
+    <h2>Hey Host !!Here are our  homes:</h2>
+    
+    <ul class="homes-list">
+      <% registeredhome.forEach(home => { %>
+        <li class="home-card">
+          <!-- Home Image with fallback -->
+          <img 
+            src="<%= home.photourl%>" 
+            alt="Home Image"
+            class="home-img">
+
+          <!-- Home Details -->
+       <p class="home-name">
+  <%= home.name || 'Unnamed Home' %> 
+  <b><strong>⭐</strong> <%= typeof home.rating !== 'undefined' && home.rating !== '' ? home.rating : 'N/A' %></b>
+</p>
+
+
+<p><strong>Address:</strong> <%= home.address %></p>
+
+<p class="font-bold"><strong>₹<%= home.price %> / night</strong></p>
+
+          
+             <a class="bg-blue-800 p-4 space-x-3" href="/homes/<%= home._id %>?favorite=false" class="home-link"><button class="viewdetail">View Details</button></a>
+           <a href="/host/edit-home/<%= home._id%>?editing=true"><button>Edit</button></a>
+          <form action="/host/delete-home/<%=home._id%>" method="post">
+          <button type="submit">Delete</button>
+          </form>
+        </li>
+      <% }) %>
+      
+    </ul>
+  </main>
+</body>
+</html>

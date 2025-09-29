@@ -1,0 +1,40 @@
+<%- include('../partials/fav.ejs')%>
+<%- include("../partials/nav.ejs")%>
+
+
+</head>
+<body>
+  <div class="main-content">
+    <!-- <h1>Welcome to Airbnb</h1> -->
+  </div>
+
+  <main class="container" style="margin-top: 90px;">
+    <h2>Here are our  registered homes :</h2>
+    
+    <ul class="homes-list">
+      <% registeredhome.forEach(home => { %>
+        <li class="home-card">
+          <!-- Home Image with fallback -->
+          <img 
+            src="<%= home.photourl %> " 
+            alt="Home Image"
+            class="home-img">
+
+          <!-- Home Details -->
+          <p class="home-name"><%= home.name %> 
+         <b><%= home.rating %>⭐</b></p>
+          <p><strong>Address:</strong> <%= home.address %></p>
+          <p  class="bg-red-900"><strong> <%= home.price %>/night</strong></p>
+         <div>
+         <a class="bg-blue-800 p-4 space-x-3" href="/homes/<%= home._id %>?favorite=false" class="home-link"><button class="viewdetail">View Details</button></a>
+           </div>
+           <div>
+           <%- include("../partials/favorite.ejs",{home:home}) %>
+           </div>
+        </li>
+      <% }) %>
+      
+    </ul>
+  </main>
+</body>
+</html>

@@ -1,0 +1,66 @@
+# Query: render
+# Including: ./airbnb auth
+# ContextLines: 1
+
+15 results - 5 files
+
+airbnb auth\controller\404.js:
+  1  exports.error=(req,res,next)=>{
+  2:   res.status(404).render('store/notfound',{tittle:"page not found",
+  3  })};
+
+airbnb auth\controller\auth.js:
+  6    console.log("second middleware", req.url, req.method);
+  7:   res.render('auth/loginpage',
+  8      {tittle:"login",
+
+airbnb auth\controller\host.js:
+   5    console.log("second middleware", req.url, req.method);
+   6:   res.render('admin/edit-home',{tittle:"Add Home",currentpage:'add-home',
+   7    editing:false
+
+  23      console.log("in the edit page",homeid,editing,home);
+  24:     res.render('admin/edit-home',{tittle:"edit Home",
+  25      home:home,
+
+  60    const registeredhome =Home.fetchAll().then((registeredhome) => 
+  61:      res.render('admin/host-home-list',{registeredhome:registeredhome,tittle:"Host Homes list"}));
+  62    console.log(registeredhome);
+  63: //  res.render('home',{registeredhome:registeredhome,tittle:"Airbnb Homes"});
+  64        
+
+airbnb auth\controller\store.js:
+  10         // rows contains actual data
+  11:       res.render('store/home-list', {
+  12          registeredhome: registeredhome,
+
+  21    // .then(homes => {
+  22:   //   res.render("store/home-list", {
+  23    //     registeredhome: homes,
+
+  42      console.log(home);
+  43:   res.render('store/home-details', { home: home,     tittle: home.name,
+  44      favorite: req.query.favorite
+
+  51     const registeredhome = Home.fetchAll().then((registeredhome) => 
+  52:     res.render('store/front-list',{registeredhome:registeredhome,tittle:"home list"}));
+  53    console.log(registeredhome);
+  54: //  res.render('home',{registeredhome:registeredhome,tittle:"Airbnb Homes"});
+  55        
+
+  58    console.log("first middleware", req.url, req.method);
+  59:   const registeredhome = Home.fetchAll().then ((registeredhome) => res.render('store/bookings',{registeredhome:registeredhome,tittle:"My Bookings"}));
+  60    console.log(registeredhome);
+
+  71  
+  72: //     res.render('store/favorite-list',{
+  73  //       favoriteHomes:favoriteHomes,
+
+  94  
+  95:           res.render('store/favorite-list', {
+  96              favoriteHomes: favoriteHomes,
+
+airbnb auth\routes\userrouter.js:
+  14  userrouter.get("/homes/:homeid", homescontroller.gethomedetails);
+  15: // Render favorites page
+  16  userrouter.post("/favorites", homescontroller.addtofavorite);

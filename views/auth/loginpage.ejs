@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('../partials/head.ejs') %>
+<%- include('../partials/nav.ejs') %>
+<body>
+  <main id="login-main-container" class="container mx-auto mt-8 p-8 bg-white rounded-lg shadow-md">
+    <figure class="login-figure">
+      <br>
+      <br>
+      <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="Login illustration" />
+      <figcaption>Welcome back! Please login to your account</figcaption>
+    </figure>
+    <form id="loginForm" 
+          action="/login" 
+          method="POST" 
+          class="max-w-md mx-auto">
+      <h1 class="text-3xl font-bold mb-6 text-center text-gray-800">Login</h1>
+      <!-- Email -->
+      <input 
+        type="text" 
+        name="email" 
+        placeholder="Email / Username" 
+        required />
+      <!-- Password -->
+      <input 
+        type="password" 
+        name="password" 
+        placeholder="Enter your password" 
+        required />
+      <!-- Submit -->
+      <input 
+        type="submit" 
+        value="Sign In" />
+    </form>
+  </main>
+</body>
+</html>
+

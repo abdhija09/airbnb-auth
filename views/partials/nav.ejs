@@ -1,0 +1,128 @@
+<div class="navbar">
+  <div class="nav-left">
+    <a href="/" class="brand">
+      <img src="https://cdn-icons-png.flaticon.com/512/2111/2111320.png" alt="Logo" style="width:36px;height:36px;border-radius:10px;vertical-align:middle;margin-right:10px;background:#fff;box-shadow:0 2px 8px rgba(0,0,0,0.13);padding:4px;">
+      <span>Airbnb</span>
+    </a>
+    <% if(isloggedin){ %>
+      <a href="/favorites" class="nav-link">Favorites</a>
+      <a href="/host/add-home" class="nav-link">Add Home</a>
+      <a href="/host/host-home-list" class="nav-link">Host Homes</a>
+      <a href="/store/bookings" class="nav-link">Bookings</a>
+      <a href="/store/front-list" class="nav-link">Home List</a>
+    <% } %>
+  </div>
+  <div class="nav-right">
+    <% if(isloggedin){ %>
+      <a class="nav-btn logout" href="/logout">Logout</a>
+    <% } else { %>
+      <a class="nav-btn login" href="/login">Login</a>
+      <a class="nav-btn signup" href="/signup">Sign Up</a>
+    <% } %>
+  </div>
+</div>
+<style>
+/* filepath: c:\Users\LENOVO\OneDrive\Desktop\Node course\airbnb auth\views\partials\nav.ejs */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #FF5A5F;
+  padding: 1rem 2.5rem;
+  box-shadow: 0 4px 32px rgba(0,0,0,0.10), 0 1.5px 8px rgba(0,0,0,0.06);
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  border-bottom: 1.5px solid #ffeaea;
+}
+.nav-left, .nav-right {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+}
+.brand {
+  display: flex;
+  align-items: center;
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: #FF5A5F;
+  text-decoration: none;
+  gap: 0.6rem;
+  padding: 0.5rem 1rem 0.5rem 0.7rem;
+  border-radius: 12px;
+  background: #fff;
+  letter-spacing: 1px;
+  box-shadow: 0 2px 12px rgba(255,90,95,0.10);
+  transition: box-shadow 0.22s;
+}
+.brand span {
+  color: #FF5A5F;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+.brand:hover {
+  box-shadow: 0 4px 18px rgba(255,90,95,0.18);
+}
+.nav-link {
+  color: #fff;
+  text-decoration: none;
+  padding: 0.5rem 1.1rem;
+  border-radius: 8px;
+  font-size: 1.05rem;
+  font-weight: 500;
+  transition: background 0.18s, color 0.18s, box-shadow 0.18s;
+  letter-spacing: 0.5px;
+  background: rgba(255,255,255,0.04);
+  margin-right: 2px;
+}
+.nav-link:hover {
+  background: rgba(255,255,255,0.22);
+  color: #fffde7;
+  box-shadow: 0 2px 8px rgba(255,90,95,0.08);
+  transform: translateY(-2px) scale(1.04);
+}
+.nav-btn {
+  color: #fff;
+  text-decoration: none;
+  padding: 0.5rem 1.2rem;
+  border-radius: 10px;
+  font-weight: 600;
+  margin-left: 0.7rem;
+  transition: background 0.18s, color 0.18s, box-shadow 0.18s, transform 0.18s;
+  border: none;
+  outline: none;
+  box-shadow: 0 1px 6px rgba(0,0,0,0.07);
+  font-size: 1.05rem;
+  letter-spacing: 0.5px;
+  background: #d32f2f;
+}
+.nav-btn.login { background: #2563eb; }
+.nav-btn.signup { background: #107334; }
+.nav-btn.logout { background: #d32f2f; }
+.nav-btn:hover {
+  box-shadow: 0 4px 16px rgba(0,0,0,0.13);
+  filter: brightness(1.09);
+  transform: translateY(-2px) scale(1.04);
+}
+@media (max-width: 900px) {
+  .navbar {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 0.8rem 1rem;
+    border-radius: 0 0 12px 12px;
+  }
+  .nav-left, .nav-right {
+    width: 100%;
+    justify-content: flex-start;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    
+  }
+  .brand span {
+    display: none;
+  }
+}
+</style>
+

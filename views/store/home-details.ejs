@@ -1,0 +1,37 @@
+
+<%- include("../partials/nav.ejs")%>
+<%- include("../partials/fav.ejs")%>
+
+
+</head>
+<body>
+  <%- include('../partials/details.ejs')%>
+  <div class="main-content">
+   
+  </div>
+
+  <main class="container">
+   
+      <div>
+         <h2>Homes details page:</h2>
+        <h3 class="bg-red-500">Description : </h3>
+         <img 
+            src=" <%= home.photourl %>" 
+            alt="Home Image"
+            class="home-img">
+            
+          <!-- Home Details -->
+          <p class="home-name">Name:<%= home.name %> 
+         <b><%= home.rating %>⭐</b></p>
+          <p><b><strong>Address:</strong> <%= home.address %></b></p>
+          <p class="font-bold"><strong>Price:<%= home.price %>/nights</strong></p>
+          </div>
+          <p class="description"><strong><b>Comment:<%= home.description %></strong></b></p>
+      <% if (!favorite){ %>
+  <%- include("../partials/favorite.ejs", { home: home }) %>
+<% } %>
+
+
+     </main>
+</body>
+</html>

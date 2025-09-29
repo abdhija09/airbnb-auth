@@ -1,0 +1,156 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #eaf4f7; /* Lighter, cooler background */
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px; /* Increased gap for more space */
+    max-width: 450px; /* Wider form container */
+    margin: 50px auto;
+    padding: 30px; /* Increased padding */
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Added subtle shadow */
+}
+
+label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #444; /* Slightly darker text */
+}
+
+input {
+    padding: 12px; /* Increased padding for larger input fields */
+    border-radius: 8px; /* Slightly more rounded corners */
+    border: 1px solid #ddd;
+    width: 100%;
+    box-sizing: border-box; /* Crucial for consistent sizing */
+    transition: border-color 0.3s ease; /* Smooth transition for focus */
+}
+
+input:focus {
+    outline: none;
+    border-color: #0077b6; /* New focus color */
+}
+
+button {
+    background-color: #d32f2f;; /* Teal color for the button */
+    color: white;
+    border: none;
+    padding: 12px; /* Increased padding for a larger button */
+    border-radius: 8px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 100%;
+}
+
+button:hover {
+    background-color: body 
+    font-family: Arial, sans-serif;
+    background-color: #eaf4f7; /* Lighter, cooler background */
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px; /* Increased gap for more space */
+    max-width: 450px; /* Wider form container */
+    margin: 50px auto;
+    padding: 30px; /* Increased padding */
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Added subtle shadow */
+}
+
+label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #444; /* Slightly darker text */
+}
+
+input {
+    padding: 12px; /* Increased padding for larger input fields */
+    border-radius: 8px; /* Slightly more rounded corners */
+    border: 1px solid #ddd;
+    width: 100%;
+    box-sizing: border-box; /* Crucial for consistent sizing */
+    transition: border-color 0.3s ease; /* Smooth transition for focus */
+}
+
+input:focus {
+    outline: none;
+    border-color:#d32f2f; /* New focus color */
+}
+
+button {
+    background-color:#d32f2f; /* Teal color for the button */
+    color: white;
+    border: none;
+    padding: 12px; /* Increased padding for a larger button */
+    border-radius: 8px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 100%;
+}
+
+button:hover {
+    background-color: #d32f2f; /* Darker teal on hover */
+}; /* Darker teal on hover */
+}
+h2{
+  align-content: center;
+  text-align: center;
+}
+h1{
+  align-content: center;
+  text-align: center;
+}
+.navbar {
+    background-color: #b7282d; /* Airbnb red */
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 0.75rem 1.5rem;
+    color: white;
+    font-weight: 500;
+    font-size: 1rem;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    z-index: 10;
+}
+
+/* Navbar link */
+.navbar a {
+    color: white;
+    text-decoration: none;
+    padding: 0.5rem 0.75rem;
+    border-radius: 4px;
+    transition: background 0.3s ease;
+}
+
+.navbar a:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 5rem;
+}
+.navbar .login {
+    margin-left: auto; /* pushes this link to the far right */
+    background-color: #2563eb; /* optional styling */
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    text-decoration: none;
+    transition: background 0.2s;
+}
+
+.navbar .login:hover {
+    background-color: #1d4ed8;
+}

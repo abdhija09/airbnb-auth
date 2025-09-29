@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('../partials/head.ejs')%>
+
+<%- include('../partials/nav.ejs')%>
+
+<body>
+ 
+  <main>
+     <header>
+    <h1>Registration form!</h1>
+  </header>
+    <h2><%= editing ? "Edit":"Enter"%> your details below:</h2>
+    <form id="userForm" 
+      action="/host/<%= editing ? 'edit-home' : 'submit' %>" 
+      method="POST" 
+      novalidate>
+    <input type="hidden" name="homeid" value="<%= editing ? home._id : '' %>" >
+    
+      <div class="form-group">
+        <label for="name">Full name</label>
+        <input id="name" name="name" placeholder="e.g. Abdhija Nigam" value="<%= editing ? home.name : '' %>"/>
+
+      </div>
+
+      <div class="form-group">
+        <label for="address">Full home address</label>
+         <input id="address" name="address" placeholder="e.g. Avanti vihar" value="<%= editing ? home.address : '' %>"/>
+      </div>
+
+      <div class="form-group">
+        <label for="price">Price</label>
+        <input id="price" name="price" placeholder="e.g. Rs 1000" value="<%= editing ? home.price : '' %>"/>
+      </div>
+      <div class="form-group">
+        <label for="rating">Rating ⭐</label>
+         <input id="rating" name="rating" placeholder="e.g. 5⭐" value="<%= editing ? home.rating : '' %>"/>
+      </div>
+    
+      <div class="form-group">
+        <label for="photourl">Photo URL</label>
+        <input id="photourl" name="photourl" type="text" placeholder="https://example.com/photo.jpg" value="<%= editing ? home.photourl : '' %>"/>
+        <br>
+        <br>
+      <div class="form-group">
+        <label for="description">Description</label>
+        <input id="description" name="description" type="text" placeholder="Describe the house" 
+        value="<%= editing ? home.description : '' %>"/>
+        <br>
+      </div>
+      </div>
+      <div class="form-group">
+        <br>
+        <button type="submit" ><%=editing ? "Edit":"Submit"%> </button>
+      </div>
+    </form>
+  </main>
+</body>
+</html>

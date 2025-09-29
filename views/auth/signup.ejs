@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('../partials/head.ejs') %>
+<%- include('../partials/nav.ejs') %>
+<head>
+  <style>
+    body {
+       background-color: #e0f7fa;
+      background: linear-gradient(120deg, #f7f7f7 60%, #ffeaea 100%);
+      font-family: 'Segoe UI', Arial, sans-serif;
+    }
+    /* Remove header styling since header is removed */
+    /* Remove main box styling for a single box look */
+    main {
+      max-width: 420px;
+      margin: 48px auto;
+      padding: 0;
+      background: none;
+      border-radius: 0;
+      box-shadow: none;
+      border: none;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 60vh;
+    }
+    form {
+      width: 100%;
+      background: #fff;
+      border-radius: 18px;
+      box-shadow: 0 4px 32px rgba(211,47,47,0.10), 0 1.5px 8px rgba(0,0,0,0.06);
+      border: 1.5px solid #ffeaea;
+      padding: 36px 32px 28px 32px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    form h1 {
+      text-align: center;
+      color: #b71c1c;
+      margin-bottom: 28px;
+      font-size: 2.2rem;
+      font-weight: 600;
+      letter-spacing: 1px;
+      margin-top: 0;
+    }
+    .input-group {
+      display: flex;
+      align-items: center;
+      margin-bottom: 20px;
+      background: none;
+      border: none;
+      border-radius: 0;
+      padding: 0;
+      box-shadow: none;
+      transition: none;
+    }
+    .input-group:focus-within {
+      border: none;
+      background: none;
+    }
+    .input-group span {
+      font-size: 1.3rem;
+      margin-right: 10px;
+      color: #d32f2f;
+      min-width: 28px;
+      text-align: center;
+      opacity: 0.85;
+    }
+    .input-group input {
+      border: 1.5px solid #e0e0e0;
+      background: #f9f6f6;
+      outline: none;
+      width: 100%;
+      padding: 13px 10px;
+      font-size: 1.08rem;
+      margin-bottom: 0;
+      box-sizing: border-box;
+      color: #333;
+      font-family: inherit;
+      border-radius: 8px;
+      transition: border 0.2s, background 0.2s;
+    }
+    .input-group input:focus {
+      border: 1.5px solid #d32f2f;
+      background: #fff6f6;
+    }
+    .input-group input::placeholder {
+      color: #bdbdbd;
+      font-size: 1rem;
+      letter-spacing: 0.5px;
+    }
+    .user-type {
+      display: flex;
+      gap: 28px;
+      margin: 10px 0 22px 0;
+      justify-content: flex-start;
+    }
+    .user-type label {
+      font-size: 1.04rem;
+      color: #444;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      transition: color 0.2s;
+    }
+    .user-type input[type="radio"]:checked + span {
+      color: #d32f2f;
+      font-weight: 600;
+    }
+    .checkbox-container {
+      display: flex;
+      align-items: center;
+      margin-bottom: 22px;
+    }
+    .checkbox-container label {
+      margin-left: 10px;
+      font-size: 1rem;
+      color: #555;
+      cursor: pointer;
+    }
+    .checkbox-container input[type="checkbox"] {
+      accent-color: #d32f2f;
+      width: 18px;
+      height: 18px;
+    }
+    button[type="submit"] {
+      width: 100%;
+      background: linear-gradient(90deg, #d32f2f 80%, #ff5252 100%);
+      color: #fff;
+      padding: 13px 0;
+      border: none;
+      border-radius: 8px;
+      font-size: 1.15rem;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.18s, box-shadow 0.18s;
+      margin-top: 14px;
+      box-shadow: 0 2px 8px rgba(211,47,47,0.08);
+      letter-spacing: 1px;
+    }
+    button[type="submit"]:hover {
+      background: linear-gradient(90deg, #b71c1c 80%, #ff1744 100%);
+      box-shadow: 0 4px 16px rgba(211,47,47,0.13);
+    }
+    @media (max-width: 500px) {
+      main {
+        padding: 0;
+        max-width: 98vw;
+      }
+      form {
+        padding: 18px 6vw 18px 6vw;
+      }
+      form h1 {
+        font-size: 1.3rem;
+      }
+    }
+    .error-box {
+  background-color: #fdecea;   /* light red background */
+  border: 1px solid #f5c6cb;  /* soft red border */
+  color: #b71c1c;             /* dark red text */
+  padding: 14px 18px;
+  border-radius: 8px;
+  margin-bottom: 18px;
+  font-size: 0.95rem;
+  box-shadow: 0 2px 8px rgba(183, 28, 28, 0.08);
+}
+
+.error-box ul {
+  margin: 0;
+  padding-left: 20px;
+}
+.error-box li {
+  margin-bottom: 6px;
+}
+.close-btn {
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #b71c1c;
+  float: right;
+  cursor: pointer;
+  line-height: 1;
+  margin-top: -4px;
+}
+  </style>
+</head>
+
+<body>
+  <!-- header removed -->
+  <main>
+    <form id="loginForm" action="/signup" method="POST">
+      <h1>Create Your Account</h1>
+     <% if (typeof errorMessages !== 'undefined' && errorMessages.length > 0) { %>
+  <div class="error-box" role="alert">
+      <button class="close-btn" onclick="document.getElementById('errorBox').style.display='none'">&times;</button>
+    <strong>⚠️ Please fix the following errors:</strong>
+    <ul class="list-disc list-inside space-y-1">
+      <% errorMessages.forEach(error => { %>
+        <li><%= error %></li>
+      <% }); %>
+    </ul>
+  </div>
+<% } %>
+
+      <div class="input-group">
+        <span>👤</span>
+        <input 
+          type="text" 
+          name="firstname" 
+          placeholder="First Name" 
+          required />
+      </div>
+      <div class="input-group">
+        <span>👤</span>
+        <input 
+          type="text" 
+          name="lastname" 
+          placeholder="Last Name" 
+        />
+      </div>
+      <div class="input-group">
+        <span>📧</span>
+        <input 
+          type="text" 
+          name="email" 
+          placeholder="abc@gmail" 
+          required />
+      </div>
+      <div class="input-group">
+        <span>🔒</span>
+        <input 
+          type="password" 
+          name="password" 
+          placeholder="Enter your password" 
+          required />
+      </div>
+      <div class="input-group">
+        <span>🔒</span>
+        <input 
+          type="password" 
+          name="confirmpassword" 
+          placeholder="Comfirm your password" 
+          required />
+      </div>
+
+      <div>
+        <span style="font-weight:500;color:#444;">User Type:</span>
+        <div class="user-type">
+          <label><input type="radio" value="guest" name="usertype" id="guest"><span>Guest</span></label>
+          <label><input type="radio" value="host" name="usertype" id="host"><span>Host</span></label>
+        </div>
+      </div>
+
+      <div class="checkbox-container">
+        <input type="checkbox" id="terms" name="terms" required>
+        <label for="terms">I agree to the Terms and Conditions.</label>
+      </div>
+
+      <button type="submit">Register</button>
+       <div style="margin-top:18px; text-align:center; font-size:1rem;">
+        Already registered? <a href="/login" style="color: #b71c1c; background-color:white ;margin-left: 0%;" >Go to Login page</a>
+      </div>
+    </form>
+  </main>
+</body>
+</html>

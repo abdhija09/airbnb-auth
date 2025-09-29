@@ -1,0 +1,48 @@
+<%- include('../partials/fav.ejs') %>
+<%- include("../partials/nav.ejs") %>
+
+</head>
+<body>
+ 
+  <!-- <div class="main-content text-center my-6">
+    <h1 class="text-3xl font-bold">Welcome to Airbnb</h1>
+  </div> -->
+
+  <main class="container mx-auto px-6">
+    <h2 class="text-2xl font-semibold mb-6">Here are your Favorites:</h2>
+    
+    <ul class="homes-list grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <% registeredhome.forEach(home => { %>
+        <li class="home-card border rounded-2xl shadow-lg p-4 bg-white">
+          
+          <!-- Home Image -->
+          <img 
+            src="<%= home.photourl %>" 
+            alt="Home Image"
+            class="home-img w-full h-60 object-cover rounded-xl mb-4">
+
+          <!-- Home Details -->
+          <p class="home-name text-lg font-semibold">
+            <%= home.name %> 
+            <b><%= home.rating %>⭐</b>
+          </p>
+          <p><strong>Address:</strong> <%= home.address %></p>
+          <p class="font-bold text-red-600"><%= home.price %>/night</p>
+          
+          <!-- Buttons -->
+          <div class="mt-4 flex gap-4">
+            <a href="/home-list/<%= home._id %>" 
+               class="home-link bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-xl shadow">
+               View Details
+            </a>
+            
+            <button class="bg-green-600 hover:bg-green-700 text-white py-2 px-4 rounded-xl shadow">
+              Book
+            </button>
+          </div>
+        </li>
+      <% }) %>
+    </ul>
+  </main>
+</body>
+</html>

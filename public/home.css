@@ -1,0 +1,370 @@
+/* Reset & base styles */
+body {
+    margin: 0;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    background-color: #fafafa;
+    color: #222;
+}
+
+/* Fixed navbar */
+.navbar {
+    background-color: #FF5A5F; /* Airbnb red */
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 0.75rem 1.5rem;
+    color: white;
+    font-weight: 500;
+    font-size: 1rem;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    z-index: 10;
+}
+
+/* Navbar link */
+.navbar a {
+    color: white;
+    text-decoration: none;
+    padding: 0.5rem 0.75rem;
+    border-radius: 4px;
+    transition: background 0.3s ease;
+}
+
+.navbar a:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 5rem;
+}
+
+/* Main content */
+.main-content {
+    padding-top: 80px; /* space for fixed nav */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: calc(100vh - 80px);
+    text-align: center;
+}
+
+/* Big welcoming heading */
+h1 {
+    font-size: clamp(4rem, 8vw, 6rem); /* Bigger and still responsive */
+    font-weight: bold;
+    color: #FF5A5F;
+    margin: 0;
+    line-height: 1.2;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.05);
+}
+
+/* Container */
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px;
+  font-family: Arial, sans-serif;
+}
+
+/* Heading */
+.container h2 {
+  text-align: center;
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: #333;
+  font-weight: 600;
+}
+
+/* Homes Grid */
+.homes-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 20px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Card */
+.home-card {
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  padding: 16px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  transition: all 0.3s ease;
+}
+
+.home-card:hover {
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+/* Home Image */
+.home-img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover; /* Keeps aspect ratio, crops overflow */
+  border-radius: 10px;
+  margin-bottom: 12px;
+  transition: transform 0.3s ease;
+}
+
+.home-card:hover .home-img {
+  transform: scale(1.03);
+}
+
+/* Name */
+.home-name {
+  font-size: 18px;
+  font-weight: bold;
+  color: #4f46e5; /* Indigo-like color */
+  margin-bottom: 8px;
+}
+
+/* Other text */
+.home-card p {
+  margin: 6px 0;
+  color: #555;
+}
+form {
+  display: flex;              /* enable flexbox */
+  flex-direction: column;     /* stack items vertically */
+  align-items: flex-start;    /* align fields to the left */
+  gap: 15px;
+  max-width: 400px;
+  margin: 50px auto;          /* center form horizontally, move it down */
+  padding: 20px;
+  background: white;
+  border-radius: 10px;
+}
+
+label {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+input {
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  width: 100%;
+}
+
+button {
+  background-color: #00883b;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #018c3d;
+}
+.home-link{
+  background-color: rgb(61, 142, 61);
+  
+}
+.goto-link {
+    display: inline-block;
+    margin-top: 2rem;
+    padding: 10px 20px;
+    font-size: 1rem;
+    color: #007bff; /* A blue color for the link */
+    background-color: transparent;
+    text-decoration: none;
+    border: 1px solid #007bff;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+
+.goto-link:hover {
+    background-color: #007bff;
+    color: white;
+}
+/* #d32f2f */
+.navbar .login {
+    margin-left: 820px; 
+    background-color: #2563eb; /* optional styling */
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    text-decoration: none;
+    transition: background 0.2s;
+}
+
+.navbar .login:hover {
+    background-color: #1d4ed8;
+}
+.signup {
+    margin-left: 820px; 
+    background-color: #107334; /* optional styling */
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 0.7rem;
+    text-decoration: none;
+    transition: background 0.2s;
+    margin-right: 50px;
+}
+
+.navbar .signup:hover {
+    background-color: #6fd689;
+}
+.logout {
+    margin-left: 820px; 
+    background-color: #2563eb; /* optional styling */
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    text-decoration: none;
+    transition: background 0.2s;
+     margin-right: 70px;
+}
+
+.navbar .logout:hover {
+    background-color: #1d4ed8;
+}
+  .checkbox-container {
+    display: inline-flex;       /* keeps it inline */
+    align-items: center;        /* align checkbox + text vertically */
+    gap: 8px;                   /* spacing between checkbox and text */
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    white-space: nowrap;        /* prevent line breaks */
+  }
+  .user-type {
+    display:  inline-flex;   ;
+    gap: 2px;                  /* space between radio buttons */
+    margin-top: 0px;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+  }
+/* =========================
+   Login Page Styles
+   ========================= */
+#login-main-container {
+  max-width: 420px;
+  margin: 48px auto;
+  padding: 0;
+  background: none;
+  border-radius: 0;
+  box-shadow: none;
+  border: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 60vh;
+}
+
+.login-figure {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 18px;
+}
+.login-figure img {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  box-shadow: 0 2px 12px rgba(211,47,47,0.10);
+  margin-bottom: 10px;
+  background: #fff;
+  object-fit: cover;
+}
+.login-figure figcaption {
+  color: #b71c1c;
+  font-size: 1.1rem;
+  font-weight: 500;
+  text-align: center;
+  margin-bottom: 6px;
+}
+
+#loginForm {
+  width: 100%;
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 4px 32px rgba(211,47,47,0.10), 0 1.5px 8px rgba(0,0,0,0.06);
+  border: 1.5px solid #ffeaea;
+  padding: 36px 32px 28px 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+}
+
+#loginForm h1 {
+  text-align: center;
+  color: #b71c1c;
+  margin-bottom: 28px;
+  font-size: 2.2rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  margin-top: 0;
+}
+
+#loginForm input[type="text"], 
+#loginForm input[type="password"] {
+  border: 1.5px solid #e0e0e0;
+  background: #f9f6f6;
+  outline: none;
+  width: 100%;
+  padding: 13px 10px;
+  font-size: 1.08rem;
+  margin-bottom: 18px;
+  box-sizing: border-box;
+  color: #333;
+  font-family: inherit;
+  border-radius: 8px;
+  transition: border 0.2s, background 0.2s;
+}
+#loginForm input[type="text"]:focus, 
+#loginForm input[type="password"]:focus {
+  border: 1.5px solid #d32f2f;
+  background: #fff6f6;
+}
+#loginForm input[type="text"]::placeholder, 
+#loginForm input[type="password"]::placeholder {
+  color: #bdbdbd;
+  font-size: 1rem;
+  letter-spacing: 0.5px;
+}
+
+#loginForm input[type="submit"] {
+  width: 100%;
+  background: linear-gradient(90deg, #d32f2f 80%, #ff5252 100%);
+  color: #fff;
+  padding: 13px 0;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.15rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.18s, box-shadow 0.18s;
+  margin-top: 14px;
+  box-shadow: 0 2px 8px rgba(211,47,47,0.08);
+  letter-spacing: 1px;
+}
+#loginForm input[type="submit"]:hover {
+  background: linear-gradient(90deg, #b71c1c 80%, #ff1744 100%);
+  box-shadow: 0 4px 16px rgba(211,47,47,0.13);
+}
+
+@media (max-width: 500px) {
+  #login-main-container {
+    padding: 0;
+    max-width: 98vw;
+  }
+  #loginForm {
+    padding: 18px 6vw 18px 6vw;
+  }
+  #loginForm h1 {
+    font-size: 1.3rem;
+  }
+  .login-figure img {
+    width: 60px;
+    height: 60px;
+  }
+}
