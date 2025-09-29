@@ -10,23 +10,37 @@
       <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="Login illustration" />
       <figcaption>Welcome back! Please login to your account</figcaption>
     </figure>
+
+    <!-- ❌ Error messages section -->
+    <% if (errorMessages && errorMessages.length > 0) { %>
+      <div class="error-container">
+        <% errorMessages.forEach(error=>{ %>
+          <p class="text-red-600 font-medium"><%= error %></p>
+        <% }) %>
+      </div>
+    <% } %>
+
     <form id="loginForm" 
           action="/login" 
           method="POST" 
           class="max-w-md mx-auto">
       <h1 class="text-3xl font-bold mb-6 text-center text-gray-800">Login</h1>
+
       <!-- Email -->
       <input 
         type="text" 
         name="email" 
         placeholder="Email / Username" 
+        value="<%= oldInput ? oldInput.email : '' %>" 
         required />
+
       <!-- Password -->
       <input 
         type="password" 
         name="password" 
         placeholder="Enter your password" 
         required />
+
       <!-- Submit -->
       <input 
         type="submit" 
@@ -35,4 +49,3 @@
   </main>
 </body>
 </html>
-

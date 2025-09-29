@@ -368,3 +368,13 @@ button:hover {
     height: 60px;
   }
 }
+.error-container{
+    background-color: #fdecea;   /* light red background */
+  border: 1px solid #f5c6cb;  /* soft red border */
+  color: #b71c1c;             /* dark red text */
+  padding: 14px 18px;
+  border-radius: 8px;
+  margin-bottom: 18px;
+  font-size: 0.95rem;
+  box-shadow: 0 2px 8px rgba(183, 28, 28, 0.08);
+}

@@ -1,5 +1,9 @@
 const Home = require('../models/homes');
 const { check, validationResult } = require("express-validator");
+const { getdb } = require("../utils/databaseutils");
+const UserModel = require("../models/user");
+const client = require("../utils/databaseutils");
+const bcrypt = require("bcrypt");
 
 exports.getlogin = (req, res, next) => {
   console.log("login page");
@@ -8,26 +12,69 @@ exports.getlogin = (req, res, next) => {
     currentpage: "login",
     editing: false,
     isloggedin: req.session.user ? true : false,
-    
-  });
+    errorMessages:[],
+    oldInput: { email: ""
+  }}
+);
 };
 
-exports.postlogin = (req, res, next) => {
- 
-  console.log("login post", req.body);
-  
-  res.cookie("isloggedin",true);
-  // 🔹 Normally you would check email & password from DB
-  // For now, let’s assume user always logs in
-  const user = { email: req.body.email }; 
+exports.postlogin = async (req, res, next) => {
+  try {
+    const { email, password } = req.body;
 
-  // ✅ Save user into session
-  req.session.user = user;
-  req.session.save(err => {
-    if (err) console.error("Session save error:", err);
-    res.redirect("/");
-  });
+    const db = getdb();
+    const usersCollection = db.collection("users");
+
+    // 1️⃣ Find user by email
+    const user = await usersCollection.findOne({ email: email });
+
+    if (!user) {
+      return res.status(401).render("auth/loginpage", {
+        tittle: "Login",
+        currentpage: "login",
+        errorMessages: ["Invalid email or password"],
+        oldInput: { email },
+      });
+    }
+
+    // 2️⃣ Compare password with hashed password in DB
+    const isMatch = await bcrypt.compare(password, user.password);
+    if (!isMatch) {
+      return res.status(401).render("auth/loginpage", {
+        tittle: "Login",
+        currentpage: "login",
+        errorMessages: ["Invalid email or password"],
+        oldInput: { email },
+      });
+    }
+
+    // 3️⃣ Save user info in session
+    req.session.user = {
+      id: user._id,
+      firstname: user.firstname,
+      email: user.email,
+      usertype: user.usertype,
+    };
+    req.session.isLoggedIn = true;
+
+    req.session.save((err) => {
+      if (err) console.error("Session save error:", err);
+      res.cookie("isloggedin", true); // optional
+      res.redirect("/");
+    });
+
+  } catch (err) {
+    console.error("Login error:", err.message);
+    res.status(500).render("auth/loginpage", {
+      tittle: "Login",
+      currentpage: "login",
+      errorMessages: ["Server error. Please try again later."],
+      oldInput: { email: req.body.email },
+    });
+  }
 };
+
+
 exports.postlogout = (req, res, next) => {
   console.log("logout post");
   res.cookie("isloggedin",false); 
@@ -47,8 +94,11 @@ exports.getsignup=(req,res,next)=>{
     tittle:"Sign Up",
     currentpage:"signup",
     editing:false,
-    isloggedin:req.session.user ? true : false
-  })
+    isloggedin:req.session.user ? true : false,
+    errorMessages: [],
+    oldInput: { firstname: "", lastname: "", email: "", password: "", usertype: ""
+  }
+});
 }
 
 
@@ -107,7 +157,7 @@ exports.postsignup = [
       return true;
     }),
 
-  (req, res, next) => {
+  async (req, res, next) => {
     console.log("Validation middleware");
     const { firstname, lastname, email, password, usertype } = req.body;
     const errors = validationResult(req);
@@ -124,12 +174,25 @@ exports.postsignup = [
       });
     }
 
-    console.log("sign up post");
-    console.log(req.body);
+    try {
+      const db = getdb();   
+      const User = new UserModel(db);
 
-    res.redirect("/login");
+      await User.createUser({ firstname, lastname, email, password, usertype });
+
+      console.log("User registered successfully");
+      res.redirect("/login");
+
+    } catch (err) {
+      console.error("Signup error:", err.message);
+      return res.status(422).render("auth/signup", { 
+        tittle: "Sign Up",
+        currentpage: "signup",
+        editing: false, 
+        isloggedin: req.session.user ? true : false, 
+        errorMessages: [err.message], 
+        oldInput: { firstname, lastname, email, usertype }, 
+      });
+    }
   },
 ];
-
-
-
