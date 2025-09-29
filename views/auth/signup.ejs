@@ -142,7 +142,7 @@
       letter-spacing: 1px;
     }
     button[type="submit"]:hover {
-      background: linear-gradient(90deg, #b71c1c 80%, #ff1744 100%);
+      background: linear-gradient(90deg, #b15454 80%, #c6909a 100%);
       box-shadow: 0 4px 16px rgba(211,47,47,0.13);
     }
     @media (max-width: 500px) {
@@ -180,11 +180,14 @@
   border: none;
   font-size: 1.2rem;
   font-weight: bold;
-  color: #b71c1c;
+  color: #b60909;
   float: right;
   cursor: pointer;
   line-height: 1;
   margin-top: -4px;
+}
+.close-btn:hover {
+  color: #d0c1c1;
 }
   </style>
 </head>
@@ -212,6 +215,7 @@
           type="text" 
           name="firstname" 
           placeholder="First Name" 
+          value="<%= oldInput.firstname ? oldInput.firstname : '' %>"
           required />
       </div>
       <div class="input-group">
@@ -220,6 +224,7 @@
           type="text" 
           name="lastname" 
           placeholder="Last Name" 
+          value="<%= oldInput.lastname ? oldInput.lastname : '' %>"
         />
       </div>
       <div class="input-group">
@@ -228,6 +233,7 @@
           type="text" 
           name="email" 
           placeholder="abc@gmail" 
+          value="<%= oldInput.email ? oldInput.email : '' %>"
           required />
       </div>
       <div class="input-group">
@@ -250,7 +256,7 @@
       <div>
         <span style="font-weight:500;color:#444;">User Type:</span>
         <div class="user-type">
-          <label><input type="radio" value="guest" name="usertype" id="guest"><span>Guest</span></label>
+          <label><input type="radio" value="guest" name="usertype" id="guest"/><span>Guest</span></label>
           <label><input type="radio" value="host" name="usertype" id="host"><span>Host</span></label>
         </div>
       </div>
