@@ -13,7 +13,7 @@ exports.getlogin = (req, res, next) => {
     editing: false,
     isloggedin: req.session.user ? true : false,
     errorMessages:[],
-    usertype: user ? user.usertype : null,
+    usertype: null,
     oldInput: { email: ""
   }}
 );

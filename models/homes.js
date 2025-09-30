@@ -28,14 +28,12 @@ save(){
     return getdb().collection('homes').updateOne({_id: new ObjectId(this._id)},{$set:updateFields});
 
   }else{
-     getdb().collection('homes').insertOne(this).then(result=>{
-    console.log(result);
-  }).catch(err=>{
-    console.log(err);
-  });
+    return getdb().collection('homes').insertOne(this);
   }
  
 }
+// insertone returns a promise so we can use then and catch in the controller with a return statement
+//same goes for updateone
 static fetchAll(callback) {
     const db = getdb(); 
     return db.collection('homes').find().toArray();
