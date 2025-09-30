@@ -77,8 +77,8 @@ app.use("/host", (req, res, next) => {
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 app.use(express.static(path.join(__dirname, 'public')));
-app.use("/host/images", express.static(path.join(__dirname, "public/images")));
-app.use('/public', express.static(path.join(__dirname, 'public')));
+// app.use("/host/images", express.static(path.join(__dirname, "public/images")));
+// app.use('/public', express.static(path.join(__dirname, 'public')));
 
 // 5️⃣ Routers
 app.use("/host", hostrouter);
