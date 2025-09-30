@@ -14,6 +14,7 @@ exports.getaddhome = (req, res) => {
     currentpage: 'add-home',
     editing: false,
     isloggedin: getLoginStatus(req),
+    errorMessages:[]
   });
 };
 
@@ -36,6 +37,7 @@ exports.getedithome = (req, res) => {
       currentpage: 'edit-home',
       editing,
       isloggedin: getLoginStatus(req),
+      errorMessages:[]
     });
   });
 };
@@ -43,11 +45,11 @@ exports.getedithome = (req, res) => {
 // ✅ Handle edit home submit
 exports.postedithome = (req, res) => {
   console.log("in the edit submit page", req.url, req.method, req.body);
-
-  const { homeid, name, address, price, photourl, rating, description } = req.body;
-  const home = new Home(name, address, price, photourl, rating, description);
+  const photourl=req.file ? req.file.path : null;
+  const { homeid, name, address, price, rating, description } = req.body;
+  const home = new Home(name, address, price,photourl, rating, description);
   home._id = homeid;
-
+ 
   home.save()
     .then(result => {
       console.log("Home updated", result);
@@ -62,10 +64,12 @@ exports.postedithome = (req, res) => {
 // ✅ Handle new home submission
 exports.homeadded = (req, res) => {
   console.log("in the submit page", req.url, req.method, req.body);
-
-  const { name, address, price, photourl, rating, description, _id } = req.body;
+  
+const { name, address, price, rating, description,photourl, _id } = req.body;
+  
   const home = new Home(name, address, price, photourl, rating, description, _id);
 
+ 
   home.save()
     .then(() => {
       res.redirect("/host/host-home-list");
@@ -86,6 +90,7 @@ exports.gethome = (req, res) => {
         registeredhome,
         tittle: "Host Homes list",
         isloggedin: getLoginStatus(req),
+        errorMessages:[]
       });
     })
     .catch(err => {

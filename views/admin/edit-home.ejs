@@ -8,13 +8,20 @@
  
   <main>
      <header>
-    <h1>Registration form!</h1>
+    <h1>Registration Your Home!</h1>
   </header>
     <h2><%= editing ? "Edit":"Enter"%> your details below:</h2>
+     <% if (errorMessages && errorMessages.length > 0) { %>
+      <div class="error-container">
+        <% errorMessages.forEach(error=>{ %>
+          <p class="text-red-600 font-medium"><%= error %></p>
+        <% }) %>
+      </div>
+    <% } %>
     <form id="userForm" 
       action="/host/<%= editing ? 'edit-home' : 'submit' %>" 
       method="POST" 
-      novalidate>
+      >
     <input type="hidden" name="homeid" value="<%= editing ? home._id : '' %>" >
     
       <div class="form-group">
@@ -38,8 +45,9 @@
       </div>
     
       <div class="form-group">
-        <label for="photourl">Photo URL</label>
-        <input id="photourl" name="photourl" type="text" placeholder="https://example.com/photo.jpg" value="<%= editing ? home.photourl : '' %>"/>
+        <label for="photourl">Photo</label>
+        <input id="photourl" name="photourl" type="text" placeholder="Enter image url"
+         />
         <br>
         <br>
       <div class="form-group">
@@ -48,7 +56,7 @@
         value="<%= editing ? home.description : '' %>"/>
         <br>
       </div>
-      </div>
+      
       <div class="form-group">
         <br>
         <button type="submit" ><%=editing ? "Edit":"Submit"%> </button>

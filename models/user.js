@@ -1,5 +1,3 @@
-
-
 const bcrypt = require("bcrypt");
 const { ObjectId } = require("mongodb");
 
@@ -26,6 +24,7 @@ class UserModel {
       email: email.toLowerCase(),
       password: hashedPassword,
       usertype, // guest or host
+      favorites: [], // ✅ empty favorites array by default
       createdAt: new Date(),
     };
 
@@ -47,7 +46,28 @@ class UserModel {
   async comparePassword(enteredPassword, storedHash) {
     return await bcrypt.compare(enteredPassword, storedHash);
   }
+
+  // ✅ Add a favorite home
+  async addFavorite(userId, homeId) {
+    return await this.collection.updateOne(
+      { _id: new ObjectId(userId) },
+      { $addToSet: { favorites: new ObjectId(homeId) } } // prevents duplicates
+    );
+  }
+
+  // ✅ Remove a favorite home
+  async removeFavorite(userId, homeId) {
+    return await this.collection.updateOne(
+      { _id: new ObjectId(userId) },
+      { $pull: { favorites: new ObjectId(homeId) } }
+    );
+  }
+
+  // ✅ Get favorites list (just IDs or full home documents if needed)
+  async getFavorites(userId) {
+    const user = await this.collection.findOne({ _id: new ObjectId(userId) });
+    return user ? user.favorites || [] : [];
+  }
 }
 
 module.exports = UserModel;
-
