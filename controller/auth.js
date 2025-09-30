@@ -13,6 +13,7 @@ exports.getlogin = (req, res, next) => {
     editing: false,
     isloggedin: req.session.user ? true : false,
     errorMessages:[],
+    usertype: user ? user.usertype : null,
     oldInput: { email: ""
   }}
 );
@@ -33,6 +34,7 @@ exports.postlogin = async (req, res, next) => {
         tittle: "Login",
         currentpage: "login",
         errorMessages: ["Invalid email or password"],
+        usertype: user ? user.usertype : null,
         oldInput: { email },
       });
     }
@@ -44,6 +46,7 @@ exports.postlogin = async (req, res, next) => {
         tittle: "Login",
         currentpage: "login",
         errorMessages: ["Invalid email or password"],
+        usertype: user ? user.usertype : null,
         oldInput: { email },
       });
     }
@@ -69,6 +72,7 @@ exports.postlogin = async (req, res, next) => {
       tittle: "Login",
       currentpage: "login",
       errorMessages: ["Server error. Please try again later."],
+      usertype: user ? user.usertype : null,
       oldInput: { email: req.body.email },
     });
   }

@@ -6,9 +6,12 @@
     </a>
     <% if(isloggedin){ %>
       <a href="/favorites" class="nav-link">Favorites</a>
-      <a href="/host/add-home" class="nav-link">Add Home</a>
+      
+      <% if(user.usertype ==='admin'){ %>
+        <a href="/host/add-home" class="nav-link">Add Home</a>
       <a href="/host/host-home-list" class="nav-link">Host Homes</a>
       <a href="/store/bookings" class="nav-link">Bookings</a>
+      <% } %>
       <a href="/store/front-list" class="nav-link">Home List</a>
     <% } %>
   </div>

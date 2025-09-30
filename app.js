@@ -33,6 +33,12 @@ app.use((req, res, next) => {
     res.locals.isloggedin = req.session.user ? true : false;
     next();
 });
+// 3️⃣ Make user available in all EJS templates
+app.use((req, res, next) => {
+  res.locals.user = req.session.user || null;  
+  next();
+});
+
 app.use("/host", (req, res, next) => {
     if (!req.session.user) {
         return res.redirect("/login");
